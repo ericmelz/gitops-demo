@@ -30,4 +30,4 @@ jobs:
 
       - name: Download eksctl
         run: |
-          echo "platform is $PLATFORM" |
+          echo "platform is $PLATFORM"
