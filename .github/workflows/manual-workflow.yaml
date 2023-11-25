@@ -1,0 +1,13 @@
+name: Manual Workflow with Dropdown
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select Deployment Environment'
+        required: true
+        type: choice
+        options:
+          - development
+          - staging
+          - production
