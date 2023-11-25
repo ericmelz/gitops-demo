@@ -36,13 +36,13 @@ jobs:
           ls -l
 
       - name: Verify checksum
-          curl -sL "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_checksums.txt" | grep $PLATFORM | sha256sum --check
+        run: curl -sL "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_checksums.txt" | grep $PLATFORM | sha256sum --check
 
       - name: Untar
-          tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
+        run: tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
 
       - name: Move to bin
-          sudo mv /tmp/eksctl /usr/local/bin
+        run: sudo mv /tmp/eksctl /usr/local/bin
 
       - name: Create EKS Cluster
         run: |
