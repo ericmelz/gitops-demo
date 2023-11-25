@@ -27,7 +27,7 @@ jobs:
 
       - name: Install eksctl
         env:
-          PLATFORM: LINUX_amd64
+          PLATFORM: Linux_amd64
         run: |
           echo "platform is $PLATFORM"
           curl -sLO "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PATFORM_amd64.tar.gz" |
