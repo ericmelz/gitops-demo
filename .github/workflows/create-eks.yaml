@@ -31,20 +31,3 @@ jobs:
       - name: Download eksctl
         run: |
           echo "platform is $PLATFORM" |
-          curl --silent --location "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz" |
-          echo "Listing dir" |
-          ls -l
-
-      - name: Verify checksum
-        run: curl -sL "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_checksums.txt" | grep $PLATFORM | sha256sum --check
-
-      - name: Untar
-        run: tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
-
-      - name: Move to bin
-        run: sudo mv /tmp/eksctl /usr/local/bin
-
-      - name: Create EKS Cluster
-        run: |
-          echo "Creating cluster for ${{ github.event.inputs.environment }}" |
-          eksctl create cluster --name ${{ github.event.inputs.environment }}-eks-cluster --region us-west-2 --nodegroup-name my-nodes --node-type m5.large --nodes 1
