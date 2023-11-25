@@ -30,7 +30,7 @@ jobs:
           PLATFORM: Linux_amd64
         run: |
           echo "platform is $PLATFORM" |
-          curl -silent --location "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PATFORM.tar.gz" |
+          curl -silent --location "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz" |
           echo "Listing dir" |
           ls -l |
           echo "Verifying checksum" |
