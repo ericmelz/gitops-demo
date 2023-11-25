@@ -15,7 +15,7 @@ on:
 
 
 jobs:
-  deploy:
+  make-cluster:
     runs-on: ubuntu-latest
     steps:
       - name: Create Cluster
