@@ -26,5 +26,6 @@ jobs:
           aws-region: us-west-2
 
       - name: Create EKS Cluster
-        run: echo "Creating cluster for ${{ github.event.inputs.environment }}"
-        run:  eksctl create cluster --name ${{ github.event.inputs.environment }}-eks-cluster --region us-west-2 --nodegroup-name my-nodes --node-type m5.large --nodes 1
+        run: |
+	  echo "Creating cluster for ${{ github.event.inputs.environment }}" |
+          eksctl create cluster --name ${{ github.event.inputs.environment }}-eks-cluster --region us-west-2 --nodegroup-name my-nodes --node-type m5.large --nodes 1
