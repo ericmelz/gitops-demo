@@ -1,0 +1,23 @@
+name: Create EKS
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Create EKS cluster for environment:'
+        required: true
+        type: choice
+        options:
+          - ci
+	  - development
+          - staging
+          - production
+
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Cluster
+        run: echo "Creating cluster for ${{ github.event.inputs.environment }}"
+        # Add your cluster creation script or commands here
