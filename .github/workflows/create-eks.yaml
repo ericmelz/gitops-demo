@@ -17,6 +17,9 @@ on:
 jobs:
   make-cluster:
     runs-on: ubuntu-latest
+    env:
+      PLATFORM: Linux_amd64
+
     steps:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -25,22 +28,21 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-west-2
 
-      - name: Install eksctl
-        env:
-          PLATFORM: Linux_amd64
+      - name: Download eksctl
         run: |
           echo "platform is $PLATFORM" |
-          curl -silent --location "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz" |
+          curl --silent --location "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz" |
           echo "Listing dir" |
-          ls -l |
-          echo "Verifying checksum" |
-          # (Optional) Verify checksum |
-          curl -sL "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_checksums.txt" | grep $PLATFORM | sha256sum --check |
-          echo "Untarring" |
-          tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz |
-          echo "Moving to bin" |
-          sudo mv /tmp/eksctl /usr/local/bin
+          ls -l
 
+      - name: Verify checksum
+          curl -sL "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_checksums.txt" | grep $PLATFORM | sha256sum --check |
+
+      - name: Untar
+          tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz |
+
+      -name: Move to bin
+          sudo mv /tmp/eksctl /usr/local/bin
 
       - name: Create EKS Cluster
         run: |
