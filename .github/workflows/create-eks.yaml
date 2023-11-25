@@ -30,7 +30,7 @@ jobs:
 
       - name: Download eksctl
         run: |
-          echo "platform is $PLATFORM"
+          echo "platform is $PLATFORM" |
           curl --silent --location -O "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz" |
           echo "Listing dir" |
           ls -l
