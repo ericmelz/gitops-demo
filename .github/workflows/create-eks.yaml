@@ -31,14 +31,14 @@ jobs:
         run: |
           echo "platform is $PLATFORM" |
           curl -silent --location "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PATFORM.tar.gz" |
-          echo "Listing dir"
+          echo "Listing dir" |
           ls -l |
-          echo "Verifying checksum"
+          echo "Verifying checksum" |
           # (Optional) Verify checksum |
           curl -sL "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_checksums.txt" | grep $PLATFORM | sha256sum --check |
-          echo "Untarring"
+          echo "Untarring" |
           tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz |
-          echo "Moving to bin"
+          echo "Moving to bin" |
           sudo mv /tmp/eksctl /usr/local/bin
 
 
