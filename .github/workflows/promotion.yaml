@@ -1,10 +1,10 @@
-name: Manual Workflow with Dropdown
+name: Promotion
 
 on:
   workflow_dispatch:
     inputs:
       environment:
-        description: 'Select Deployment Environment'
+        description: 'Select Environment to promote:'
         required: true
         type: choice
         options:
