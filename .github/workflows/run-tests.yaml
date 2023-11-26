@@ -62,5 +62,4 @@ jobs:
 
       - name: Run test
         run: |
-          kubectl exec service/redis-monitor bash -c "/app/src/run_docker_tests.sh"
-
+          kubectl exec deployment/redis-monitor '/usr/src/app/run_docker_tests.sh'
