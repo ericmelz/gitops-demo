@@ -46,17 +46,17 @@ jobs:
 
       - name: Deploy to EKS
         run: |
-          kubectl apply -f k8s/zookeeper-deployment.yaml
-          kubectl apply -f k8s/zookeeper-service.yaml
-          kubectl apply -f k8s/kafka-deployment.yaml
-          kubectl apply -f k8s/kafka-service.yaml
-          kubectl apply -f k8s/redis-deployment.yaml
-          kubectl apply -f k8s/redis-service.yaml
-          kubectl apply -f k8s/redis-monitor-deployment.yaml
-          kubectl apply -f k8s/kafka-monitor-deployment.yaml
-          kubectl apply -f k8s/crawler-deployment.yaml
-          kubectl apply -f k8s/rest-deployment.yaml
-          kubectl apply -f k8s/rest-service.yaml
+          kubectl apply -f dev/zookeeper-deployment.yaml
+          kubectl apply -f dev/zookeeper-service.yaml
+          kubectl apply -f dev/kafka-deployment.yaml
+          kubectl apply -f dev/kafka-service.yaml
+          kubectl apply -f dev/redis-deployment.yaml
+          kubectl apply -f dev/redis-service.yaml
+          kubectl apply -f dev/redis-monitor-deployment.yaml
+          kubectl apply -f dev/kafka-monitor-deployment.yaml
+          kubectl apply -f dev/crawler-deployment.yaml
+          kubectl apply -f dev/rest-deployment.yaml
+          kubectl apply -f dev/rest-service.yaml
           kubectl apply -f dev/datadoggie-deployment.yaml
           kubectl apply -f dev/datadoggie-service.yaml
 
