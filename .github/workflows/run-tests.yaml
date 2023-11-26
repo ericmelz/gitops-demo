@@ -60,6 +60,23 @@ jobs:
           kubectl apply -f dev/datadoggie-deployment.yaml
           kubectl apply -f dev/datadoggie-service.yaml
 
-      - name: Run test
+      - name: Test redis-monitor
         run: |
           kubectl exec deployment/redis-monitor '/usr/src/app/run_docker_tests.sh'
+
+      - name: Test kafka-monitor
+        run: |
+          kubectl exec deployment/kafka-monitor '/usr/src/app/run_docker_tests.sh'
+
+      - name: Test rest
+        run: |
+          kubectl exec deployment/rest '/usr/src/app/run_docker_tests.sh'
+
+      - name: Test crawler
+        run: |
+          kubectl exec deployment/crawler '/usr/src/app/run_docker_tests.sh'
+
+      - name: Cleanup
+        run: |
+          kubectl delete service --all
+          kubectl delete deploy --all
