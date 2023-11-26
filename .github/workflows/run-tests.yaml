@@ -46,10 +46,21 @@ jobs:
 
       - name: Deploy to EKS
         run: |
+          kubectl apply -f k8s/zookeeper-deployment.yaml
+          kubectl apply -f k8s/zookeeper-service.yaml
+          kubectl apply -f k8s/kafka-deployment.yaml
+          kubectl apply -f k8s/kafka-service.yaml
+          kubectl apply -f k8s/redis-deployment.yaml
+          kubectl apply -f k8s/redis-service.yaml
+          kubectl apply -f k8s/redis-monitor-deployment.yaml
+          kubectl apply -f k8s/kafka-monitor-deployment.yaml
+          kubectl apply -f k8s/crawler-deployment.yaml
+          kubectl apply -f k8s/rest-deployment.yaml
+          kubectl apply -f k8s/rest-service.yaml
           kubectl apply -f dev/datadoggie-deployment.yaml
           kubectl apply -f dev/datadoggie-service.yaml
 
       - name: Run test
         run: |
-          kubectl exec -it service/datadoggie -- bash -c "cd /usr/src/app && /usr/local/bin/python -c'from hitter import *; init(); hitit()'"
+          kubectl exec service/redis-monitor bash -c "/app/src/run_docker_tests.sh"
 
