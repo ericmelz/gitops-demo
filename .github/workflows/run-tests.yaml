@@ -37,12 +37,12 @@ jobs:
 
       - name: Install kubectl
         uses: azure/setup-kubectl@v3
-	with:
-	  version: 'v1.28.3'
-	id: install
+        with:
+          version: 'v1.28.3'
+        id: install
 
       - name: Deploy to EKS
         run: |
-	  kubectl apply -f dev/datadoggie-deployment.yaml
-	  kubectl apply -f dev/datadoggie-deployment.yaml	  
+          kubectl apply -f dev/datadoggie-deployment.yaml
+          kubectl apply -f dev/datadoggie-deployment.yaml         
 
