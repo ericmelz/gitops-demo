@@ -1,4 +1,4 @@
-name: Promotion
+name: K8s Test
 
 on:
   workflow_dispatch:
